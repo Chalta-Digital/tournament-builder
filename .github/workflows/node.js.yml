@@ -24,5 +24,24 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: cd backend/ && npm install   
     - run: cd frontend/ && npm install
-      env:
-        CI: true
+
+  test:
+    runs-on: ubuntu-latest
+
+    container: node
+
+    strategy: matrix:
+      node-version: [10.x, 12.x, 14.x]
+    
+      steps:
+        - name: Running docker
+        uses:
+          runs:
+            using: 'docker'
+            image: 'Dockerfile'
+        - name: CI tests
+        run: cd backend
+        run: npm ci-test
+        
+    env:
+      CI: true
