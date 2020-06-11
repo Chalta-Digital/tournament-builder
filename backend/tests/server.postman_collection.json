@@ -1,0 +1,233 @@
+{
+	"info": {
+		"_postman_id": "f1f0dc69-72ef-44ee-9bda-dfac8a907469",
+		"name": "server",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET /api",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c67a5d47-3a70-45b0-8001-b37eb933382f",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /api/camels",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "927025af-5584-4888-a286-730662635095",
+						"exec": [
+							"// Save and read environment variables",
+							"",
+							"// 1) Create an environment in Postman:",
+							"// https://www.getpostman.com/docs/v6/postman/environments_and_globals/manage_environments",
+							"",
+							"// 2) Save reponse data in environment variable",
+							"var jsonData = pm.response.json();",
+							"var camelId = jsonData._id",
+							"pm.environment.set(\"camel_id\", camelId);",
+							"",
+							"// 3) Use variable in later requests via {{variable}}",
+							"// GET {{host}}/api/camels/{{camel_id}}",
+							"var getCamelId = pm.variables.get(\"camel_id\");",
+							"",
+							"// Test assertion examples",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"Body has correct color and position\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.color).to.eql(\"orange\");",
+							"    pm.expect(jsonData.position).to.eql(7);",
+							"});",
+							"",
+							"pm.test(\"Body has _id\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData._id).to.be.a('String');",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"color\": \"orange\",\n\t\"position\": 7\n}\n"
+				},
+				"url": {
+					"raw": "{{host}}/api/camels",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"camels"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /api/camels",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "927025af-5584-4888-a286-730662635095",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/camels",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"camels"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /api/camels/:id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "927025af-5584-4888-a286-730662635095",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/camels/{{camel_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"camels",
+						"{{camel_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "7e800163-8a55-4e5e-9612-c424073c185b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "ee0c97da-ae53-475a-9016-45bcfd424105",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "cd185905-a834-4211-8030-583d17702534",
+			"key": "host",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+}

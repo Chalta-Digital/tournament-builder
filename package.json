@@ -1,0 +1,9 @@
+{
+  "name": "backend-frontend",
+  "version": "0.1.0",
+  "description": "This collection package integrates the backend and frontend for deployment.",
+  "main": "backend/app.js",
+  "scripts": {
+    "postinstall": "npm install --prefix backend && npm install --prefix frontend && npm install --only=dev --prefix frontend && npm run build --prefix frontend"
+  }
+}
