@@ -31,8 +31,9 @@ jobs:
     container: node
     
     steps:
+      - run: cd backend
       - name: CI tests
-        run: cd backend && npm ci-test
+      - run: npm ci-test
         
     env:
       CI: true
