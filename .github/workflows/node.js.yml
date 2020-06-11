@@ -30,15 +30,9 @@ jobs:
 
     container: node
     
-      steps:
-        - name: Running docker
-        uses:
-          runs:
-            using: 'docker'
-            image: 'Dockerfile'
-        - name: CI tests
-        run: cd backend
-        run: npm ci-test
+    steps:
+      - name: CI tests
+        run: cd backend && npm ci-test
         
     env:
       CI: true
