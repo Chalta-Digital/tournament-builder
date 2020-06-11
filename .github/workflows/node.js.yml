@@ -23,6 +23,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - uses: c-hive/gha-npm-cache@v1
     - name: Backend
       run: cd backend/ && npm install
     - name: Frontend   
