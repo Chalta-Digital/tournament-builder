@@ -42,9 +42,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: cd backend
       - name: CI tests
-        run: npm run ci-test
+        run: cd backend && npm run ci-test
         
     env:
       CI: true
