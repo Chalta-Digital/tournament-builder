@@ -26,9 +26,8 @@ jobs:
     - run: cd frontend/ && npm install
 
   test:
+    
     runs-on: ubuntu-latest
-
-    container: node
     
     strategy:
       matrix:
