@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# waits for a database to come up
+wait_for_db() {
+    local host="$1" port="$2" user="$3" password="$4" name="$5"
+
+    local mysql=(mysql -h "$host" -P "$port" -u "$user" --password="$password" "$5")
+
+    for i in {60..0}; do # 60 * 5 seconds = wait 5 minutes
+        echo -n "Connecting to database $user@$host:$port/$name... "
+        if echo 'SELECT 1' | "${mysql[@]}" &>/dev/null; then
+            echo 'Success!'
+            i=1 # ensure we succeed if this is the last iteration
+            break
+        fi
+        echo 'Fail'
+        sleep 5 # don't ping too often
+    done
+    if [ "$i" = 0 ]; then
+        echo >&2 "Failed to connect to database $user@$host:$port/$name."
+        return 1
+    fi
+}
+
+wait_for_db "$DB_HOST" "$DB_PORT" "$DB_USERNAME" "$DB_PASSWORD" "$DB_DATABASE" || exit 0
+
+npm run dev #app.js
