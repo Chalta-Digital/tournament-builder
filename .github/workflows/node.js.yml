@@ -26,10 +26,3 @@ jobs:
     - run: cd frontend/ && npm install
       env:
         CI: true
-  test:
-    runs-on: ubuntu-latest
-    name: Running the CI tests for backend
-    
-    run: cd backend 
-    run: npm run ci-test
-
