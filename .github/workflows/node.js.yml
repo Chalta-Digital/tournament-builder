@@ -23,19 +23,19 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - uses: c-hive/gha-npm-cache@v1
     - name: Backend
       run: cd backend/ && npm install
     - name: Frontend   
       run: cd frontend/ && npm install
 
-  test:
+  backend-test:
     
-    runs-on: ubuntu-latest
+    runs-on: ${{matrix.os}}
     
     strategy:
       matrix:
         node-version: [10.x, 12.x, 14.x]
+        os: [ubuntu-latest, windows-latest, macOs-latest]
     
     steps:
       - uses: actions/checkout@v2
