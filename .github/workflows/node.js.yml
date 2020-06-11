@@ -29,9 +29,6 @@ jobs:
     runs-on: ubuntu-latest
 
     container: node
-
-    strategy: matrix:
-      node-version: [10.x, 12.x, 14.x]
     
       steps:
         - name: Running docker
