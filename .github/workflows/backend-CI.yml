@@ -11,7 +11,8 @@ on:
 #    paths: backend/*
 
 jobs:
-  build: 
+  build:
+    name: build
     runs-on: ${{matrix.os}}
 
     strategy:
@@ -40,6 +41,7 @@ jobs:
         run: cd backend && npm install
         
   backend-test:
+    name: backend-tests
     needs: [build]
     
     runs-on: ${{matrix.os}}
@@ -57,7 +59,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       
       - name: CI tests
-        if: build.steps.cache.outputs.cache-hit == 'true'
+        if: jobs.build.steps.cache.outputs.cache-hit == 'true'
         run: cd backend && npm run ci-test
         
     env:
