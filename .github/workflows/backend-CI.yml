@@ -4,11 +4,10 @@
 name: Backend CI
 
 on:
-  - push
-#  push:
-#    paths: backend/*
-#  pull_request:
-#    paths: backend/*
+  push:
+    paths: backend/*
+  pull_request:
+    paths: backend/*
 
 jobs:
   backend-tests:
@@ -38,7 +37,6 @@ jobs:
             ${{ runner.os }}-
             
       - name: Build backend
-        if: steps.cache.outputs.cache-hit != 'true'
         run: | 
           cd backend
           npm install
