@@ -10,8 +10,25 @@ on:
     paths: backend/*
 
 jobs:
+  build: 
+    runs-on: ${{matrix.os}}
 
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x]
+        os: [ubuntu-latest, windows-latest, macOs-latest]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Build backend
+        run: cd backend && npm install
+        
   backend-test:
+    needs: [build]
     
     runs-on: ${{matrix.os}}
     
@@ -26,8 +43,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Build backend
-        run: cd backend && npm install
+
       - name: CI tests
         run: cd backend && npm run ci-test
         
