@@ -4,10 +4,11 @@
 name: Backend CI
 
 on:
-  push:
-    paths: backend/*
-  pull_request:
-    paths: backend/*
+  - push
+#  push:
+#    paths: backend/*
+#  pull_request:
+#    paths: backend/*
 
 jobs:
   build: 
