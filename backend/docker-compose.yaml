@@ -17,15 +17,14 @@ services:
       - api-db
 
   api-db:
-    image: mysql:5.7
+    image: postgres
     hostname: api-db
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=db_visitor
-      - MYSQL_USER=api
-      - MYSQL_PASSWORD=api
+      - POSTGRES_DB=db_tournament
+      - POSTGRES_USER=api
+      - POSTGRES_PASSWORD=api
     ports:
-      - 1080:3306
+      - 5432:5432
     restart: on-failure:3
 
 networks:

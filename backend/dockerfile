@@ -3,7 +3,7 @@ FROM node
 WORKDIR /usr/src/app
 
 ENV DB_HOST=api-db \
-    DB_PORT=3306 \
+    DB_PORT=5432 \
     DB_DATABASE=db_tournament \
     DB_USERNAME=api \
     DB_PASSWORD=api
@@ -12,7 +12,7 @@ COPY package*.json ./
 
 RUN npm install
 RUN apt-get update && apt-get upgrade -y
-RUN apt-get install -y mysql-client
+RUN apt-get install postgresql-client  
 
 COPY docker-entrypoint /usr/local/bin/
 RUN sed -i -e 's/\r$//' /usr/local/bin/docker-entrypoint && chmod +x /usr/local/bin/docker-entrypoint

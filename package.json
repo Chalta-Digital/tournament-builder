@@ -5,5 +5,8 @@
   "main": "backend/app.js",
   "scripts": {
     "postinstall": "npm install --prefix backend && npm install --prefix frontend && npm install --only=dev --prefix frontend && npm run build --prefix frontend"
+  },
+  "dependencies": {
+    "pg": "^8.2.1"
   }
 }

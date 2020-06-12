@@ -4,7 +4,7 @@
 wait_for_db() {
     local host="$1" port="$2" user="$3" password="$4" name="$5"
 
-    local mysql=(mysql -h "$host" -P "$port" -u "$user" --password="$password" "$5")
+    local psql=(psql -h "$host" -p "$port" -U "$user" --password="$password" "$5")
 
     for i in {60..0}; do # 60 * 5 seconds = wait 5 minutes
         echo -n "Connecting to database $user@$host:$port/$name... "
