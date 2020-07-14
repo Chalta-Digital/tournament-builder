@@ -104,6 +104,18 @@ if(pgclient.connect()){
 		if (err) throw err
 	});
 
+	const createResultsText = 
+	`CREATE TABLE IF NOT EXISTS results (
+		id SERIAL PRIMARY KEY,
+		game_id INTEGER REFERENCES games(id),
+		team_id_1_score INTEGER NOT NULL,
+		team_id_2_score INTEGER NOT NULL
+	);
+	`
+	pgclient.query(createResultsText, (err, res) => {
+		if (err) throw err
+	});
+
 
 }else(
 	console.log('Problem with DB connection')
