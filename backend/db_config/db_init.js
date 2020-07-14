@@ -122,9 +122,10 @@ if(pgclient.connect()){
 	*/
 	const generateUserTablesDataText = 
 	`
-	INSERT INTO users(username)
+	INSERT INTO users(username, password)
 	SELECT
-  	'user_' || seq AS username
+	  'user_' || seq AS username,
+	  'chalta2020' AS password
 	FROM GENERATE_SERIES(1, 5) seq;
 	`
 	pgclient.query(generateUserTablesDataText, (err, res) => {
