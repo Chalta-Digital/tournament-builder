@@ -10,17 +10,20 @@ const pgclient = new Client({
 
 if(pgclient.connect()){
 	
-    const createRoleEnumText = 'CREATE TYPE role AS ENUM (\'appAdmin\', \'tournamentAdmin\', \'referee\');';
+	const createRoleEnumText = `
+	DROP TYPE IF EXISTS role CASCADE;
+	CREATE TYPE role AS ENUM (\'appAdmin\', \'tournamentAdmin\', \'referee\');
+	`
     pgclient.query(createRoleEnumText, (err, res) => {
         if (err) throw err;
     });
 
-	const createUserTableText  = 
+    const createUserTableText  = 
 		`CREATE TABLE IF NOT EXISTS users (
 			id SERIAL PRIMARY KEY,
 			username VARCHAR (50) UNIQUE NOT NULL,
 			password  TEXT  NOT NULL,
-			user_role role
+			user_role role DEFAULT NULL
 		);
 		`;
     pgclient.query(createUserTableText, (err, res) => {
@@ -121,19 +124,20 @@ if(pgclient.connect()){
 	*/
     const generateUsersTableDataText = 
 	`
-	INSERT INTO users(username, password, role)
+	INSERT INTO users(username, password, user_role)
 	SELECT
 	  'user_' || seq AS username,
 	  'chalta2020' AS password,
 	  (
 		CASE (RANDOM()*2)::INT
-		  WHEN 1 THEN 'appAdmin'
-		  WHEN 2 THEN 'tournamentAdmin'
-		  WHEN 3 THEN 'referee'
+		  WHEN 0 THEN 'appAdmin'::role
+		  WHEN 1 THEN 'tournamentAdmin'::role
+		  WHEN 2 THEN 'referee'::role
 		END
-	  ) AS role
+	  ) AS user_role
 	FROM GENERATE_SERIES(1, 5) seq;
 	`;
+
     pgclient.query(generateUsersTableDataText, (err, res) => {
         if (err) throw err;
     });
