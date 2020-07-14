@@ -117,6 +117,21 @@ if(pgclient.connect()){
 	});
 
 
+	/** 
+	 dummy data generation for users table 
+	*/
+	const generateUserTablesDataText = 
+	`
+	INSERT INTO users(username)
+	SELECT
+  	'user_' || seq AS username
+	FROM GENERATE_SERIES(1, 5) seq;
+	`
+	pgclient.query(generateUserTablesDataText, (err, res) => {
+		if (err) throw err
+	});
+
+
 }else(
 	console.log('Problem with DB connection')
 )
