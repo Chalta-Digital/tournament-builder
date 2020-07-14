@@ -120,15 +120,22 @@ if(pgclient.connect()){
 	/** 
 	 dummy data generation for users table 
 	*/
-	const generateUserTablesDataText = 
+	const generateUsersTableDataText = 
 	`
 	INSERT INTO users(username, password)
 	SELECT
 	  'user_' || seq AS username,
-	  'chalta2020' AS password
+	  'chalta2020' AS password,
+	  (
+		CASE (RANDOM()*2)::INT
+		  WHEN 1 THEN 'appAdmin'
+		  WHEN 2 THEN 'tournamentAdmin'
+		  WHEN 3 THEN 'referee'
+		END
+	  ) AS role
 	FROM GENERATE_SERIES(1, 5) seq;
 	`
-	pgclient.query(generateUserTablesDataText, (err, res) => {
+	pgclient.query(generateUsersTableDataText, (err, res) => {
 		if (err) throw err
 	});
 
