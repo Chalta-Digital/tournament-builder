@@ -19,5 +19,5 @@ const tournamentType = {
 }
 
 module.exports = {
-    addNewTournamentType
+    TournamentConfig
 }

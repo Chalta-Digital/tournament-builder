@@ -1,5 +1,5 @@
 
-class result{
+class Result{
 
 constructor(json){
 
@@ -11,12 +11,12 @@ gameId = 0
 }
 
 const RESULTTYPE = {
+    0: '-',
     1: 'WON',
-    2: 'DRAWN',
-    3: 'LOST'
+    2: 'DRAW',
+    3: 'LOST',
 }
 
 module.exports = {
-    result,
-    addNewResultType
+    Result
 }

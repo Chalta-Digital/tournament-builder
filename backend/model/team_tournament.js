@@ -11,12 +11,7 @@ tournamentId = 0
 
 }
 
-const tournamentId = {
-    1: '7458651',
-    2: '8475878',
-
-}
 
 module.exports = {
-    addNewTournamentId
+    TeamTournament
 }
