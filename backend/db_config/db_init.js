@@ -91,7 +91,18 @@ if(pgclient.connect()){
 		if (err) throw err
 	});
 
-	
+	const createGamesText = 
+	`CREATE TABLE IF NOT EXISTS games (
+		id SERIAL PRIMARY KEY,
+		group_id INTEGER REFERENCES groups(id),
+		tournament_id INTEGER REFERENCES tournaments(id),
+		team_id_1 INTEGER NOT NULL,
+		team_id_2 INTEGER NOT NULL
+	);
+	`
+	pgclient.query(createGamesText, (err, res) => {
+		if (err) throw err
+	});
 
 
 }else(
