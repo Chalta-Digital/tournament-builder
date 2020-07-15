@@ -15,7 +15,6 @@ const tournamentType = {
     1: 'Group torunaments',
     2: 'Single elimination tournament',
     3: 'Double elimination tournament'
-
 }
 
 module.exports = {
