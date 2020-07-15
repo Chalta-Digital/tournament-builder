@@ -10,10 +10,10 @@ const pgclient = new Client({
 
 if(pgclient.connect()){
 	
-	const createRoleEnumText = `
+    const createRoleEnumText = `
 	DROP TYPE IF EXISTS role CASCADE;
-	CREATE TYPE role AS ENUM (\'appAdmin\', \'tournamentAdmin\', \'referee\');
-	`
+	CREATE TYPE role AS ENUM ('appAdmin', 'tournamentAdmin', 'referee');
+	`;
     pgclient.query(createRoleEnumText, (err, res) => {
         if (err) throw err;
     });
@@ -37,28 +37,18 @@ if(pgclient.connect()){
 			tournament_name TEXT NOT NULL,
 			no_of_teams INTEGER NOT NULL,
 			sports_type TEXT NOT NULL,
+			tournament_type TEXT NOT NULL,
+			no_of_groups INTEGER NOT NULL,
+			no_of_stages INTEGER NOT NULL,
 			start_date DATE NOT NULL DEFAULT CURRENT_DATE,
 			end_date DATE CHECK (end_date > start_date)	
 		);
 		`;
-    pgclient.query(createTournamentTableText, (err, res) => {
+
+	pgclient.query(createTournamentTableText, (err, res) => {
         if (err) throw err;
     });
-		
-    const createTournamentConfigTableText = 
-	`CREATE TABLE IF NOT EXISTS tournament_config (
-		id SERIAL PRIMARY KEY,
-		tournament_id INTEGER REFERENCES tournaments(id),
-		tournament_name TEXT NOT NULL,
-		no_of_teams INTEGER NOT NULL,
-		sports_type TEXT NOT NULL,
-		start_date DATE NOT NULL DEFAULT CURRENT_DATE,
-		end_date DATE CHECK (end_date > start_date)	
-	);
-	`;
-    pgclient.query(createTournamentTableText, (err, res) => {
-        if (err) throw err;
-    });
+
 
     const createTeamsText = 
 	`CREATE TABLE IF NOT EXISTS teams (

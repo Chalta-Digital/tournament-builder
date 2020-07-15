@@ -9,7 +9,7 @@ const pgclient = new Client({
 });
 
 if(pgclient.connect()){
-	console.log('connected');
+    console.log('connected');
     const deleteTablesText = `
     DROP TYPE IF EXISTS role CASCADE;
     DROP TABLE IF EXISTS users CASCADE;
@@ -20,9 +20,9 @@ if(pgclient.connect()){
     DROP TABLE IF EXISTS games CASCADE;
     DROP TABLE IF EXISTS groups CASCADE;
     DROP TABLE IF EXISTS results CASCADE;
-    `
+    `;
     
-	pgclient.query(deleteTablesText, (err, res) => {
+    pgclient.query(deleteTablesText, (err, res) => {
         if (err) throw err;
     });
 
