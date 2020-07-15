@@ -12,7 +12,7 @@ COPY package*.json ./
 
 RUN npm install
 RUN apt-get update && apt-get upgrade -y
-RUN apt-get install postgresql-client  
+#RUN apt-get install postgresql-client  
 
 COPY docker-entrypoint /usr/local/bin/
 RUN sed -i -e 's/\r$//' /usr/local/bin/docker-entrypoint && chmod +x /usr/local/bin/docker-entrypoint
