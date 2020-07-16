@@ -49,4 +49,4 @@ npm run serve
 
 ## Visual Studio Code (VSCode)
 
-Open the `backend` and `frontend` in separate VSCode workspaces or open the combined [backend-frontend.code-workspace](./backend-frontend.code-workspace). Otherwise, workspace-specific settings don't work properly.
+Open the `backend` and `frontend` in separate VSCode workspaces or open the combined  [backend-frontend.code-workspace](./backend-frontend.code-workspace). Otherwise, workspace-specific settings don't work properly.
