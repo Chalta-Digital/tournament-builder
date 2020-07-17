@@ -24,7 +24,7 @@ router.get('/:id', function(req, res, next) {
 // Delete the camel with the given ID
 router.delete('/:id', function(req, res, next) {
     var id = req.params.id;
-    console.log(`deletion of ${id}`)
+    console.log(`deletion of ${id}`);
     var index = camels.findIndex(camel => camel._id === id);
     var camel = new Object(camels[index]);
     try {

@@ -18,7 +18,7 @@ if(pgclient.connect()){
         if (err) throw err;
     });
 
-    const createUserTableText  = 
+    const createUserTableText = 
 		`CREATE TABLE IF NOT EXISTS users (
 			id SERIAL PRIMARY KEY,
 			username VARCHAR (50) UNIQUE NOT NULL,
@@ -45,7 +45,7 @@ if(pgclient.connect()){
 		);
 		`;
 
-	pgclient.query(createTournamentTableText, (err, res) => {
+    pgclient.query(createTournamentTableText, (err, res) => {
         if (err) throw err;
     });
 
@@ -133,9 +133,9 @@ if(pgclient.connect()){
     });
 
 
-}else(
+}else{(
     console.log('Problem with DB connection')
-);
+);}
 
 
 

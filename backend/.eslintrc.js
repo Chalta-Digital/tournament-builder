@@ -14,7 +14,15 @@ module.exports = {
         ],
         'linebreak-style': [
             'error',
-            'windows'
+            'unix'
+        ],
+        'no-multi-spaces': [
+            'error',
+            {'ignoreEOLComments': true}
+        ],
+        'curly': [
+            'error',
+            'multi-or-nest'
         ],
         'quotes': [
             'error',
