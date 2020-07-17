@@ -19,6 +19,7 @@
     "vuetify": "^2.2.11"
   },
   "devDependencies": {
+    "@mdi/font": "^5.3.45",
     "@vue/cli-plugin-eslint": "^4.4.3",
     "@vue/cli-service": "^4.4.3",
     "@vue/eslint-config-standard": "^5.1.2",

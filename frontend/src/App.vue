@@ -2,7 +2,7 @@
   <v-app>
     <v-app-bar
       app
-      red accent-4
+      color="cyan darken-4"
     >
         <v-toolbar-title class="headline text-uppercase">
           <span></span>
