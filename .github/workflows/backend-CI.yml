@@ -5,7 +5,10 @@ name: Backend CI
 
 on:
   push:
-    paths: backend/*
+    paths: 
+      - backend/**
+      - backend/*
+      - '**.js'
   pull_request:
     paths: backend/*
 
