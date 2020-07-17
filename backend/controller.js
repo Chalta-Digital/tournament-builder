@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 // Create a new camel
 router.post('/', function(req, res, next) {
     var camel = new Object(req.body);
-    camel._id = 34654;
+    camel._id = '34654';
     camels.push(camel);
     res.status(201).json(camel);
 });
