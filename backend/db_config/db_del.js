@@ -1,6 +1,6 @@
-const { Client } = require('pg');
+const { Pool } = require('pg');
 
-const pgclient = new Client({
+const pgPool= new Pool ({
     host: process.env.POSTGRES_HOST || 'localhost',
     port: process.env.POSTGRES_PORT || 5432,
     user: 'api',
@@ -8,7 +8,7 @@ const pgclient = new Client({
     database: 'db_tournament'
 });
 
-if(pgclient.connect()){
+if(pgPool.connect()){
     console.log('connected');
     const deleteTablesText = `
     DROP TYPE IF EXISTS role CASCADE;
@@ -22,10 +22,9 @@ if(pgclient.connect()){
     DROP TABLE IF EXISTS results CASCADE;
     `;
     
-    pgclient.query(deleteTablesText, (err, res) => {
+    pgPool.query(deleteTablesText, (err, res) => {
         if (err) throw err;
     });
-
 
 }else(
     console.log('Problem with DB connection')

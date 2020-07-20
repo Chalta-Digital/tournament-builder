@@ -18,9 +18,12 @@ app.use(morgan('dev'));
 app.options('*', cors());
 app.use(cors());
 
+//db connection
+const db = require('./db_config/db_init')
+
 // Define routes
 app.get('/api', function(req, res) {
-    res.json({'message': 'Welcome to the EDA397/DIT192 backend ExpressJS project!'});
+    res.json({'message': 'Welcome to the tournament manager backend ExpressJS project!'});
 });
 app.use('/api/camels', camelsController);
 
