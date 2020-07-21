@@ -19,7 +19,7 @@ app.options('*', cors());
 app.use(cors());
 
 //db connection
-const db = require('./db_config/db_init')
+const database = require('./db_config/db_init').createAllTables;
 
 // Define routes
 app.get('/api', function(req, res) {
@@ -54,6 +54,9 @@ app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.json(err_res);
 });
+
+database(function(){ });
+
 
 app.listen(port, function(err) {
     if (err) throw err;
