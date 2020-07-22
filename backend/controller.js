@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-const uuidv4 = require('uuid/v4');
 var camels = [];
 
 // Return a list of all camels
@@ -11,7 +10,7 @@ router.get('/', function(req, res, next) {
 // Create a new camel
 router.post('/', function(req, res, next) {
     var camel = new Object(req.body);
-    camel._id = uuidv4();
+    camel._id = '34654';
     camels.push(camel);
     res.status(201).json(camel);
 });
@@ -25,7 +24,7 @@ router.get('/:id', function(req, res, next) {
 // Delete the camel with the given ID
 router.delete('/:id', function(req, res, next) {
     var id = req.params.id;
-    console.log(`deletion of ${id}`)
+    console.log(`deletion of ${id}`);
     var index = camels.findIndex(camel => camel._id === id);
     var camel = new Object(camels[index]);
     try {

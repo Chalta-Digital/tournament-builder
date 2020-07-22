@@ -18,9 +18,12 @@ app.use(morgan('dev'));
 app.options('*', cors());
 app.use(cors());
 
+//db connection
+const database = require('./db_config/db_init').createAllTables;
+
 // Define routes
 app.get('/api', function(req, res) {
-    res.json({'message': 'Welcome to the EDA397/DIT192 backend ExpressJS project!'});
+    res.json({'message': 'Welcome to the tournament manager backend ExpressJS project!'});
 });
 app.use('/api/camels', camelsController);
 
@@ -46,12 +49,14 @@ app.use(function(err, req, res, next) {
         'message': err.message,
         'error': {}
     };
-    if (env === 'development') {
+    if (env === 'development') 
         err_res['error'] = err;
-    }
     res.status(err.status || 500);
     res.json(err_res);
 });
+
+database(function(){ });
+
 
 app.listen(port, function(err) {
     if (err) throw err;
