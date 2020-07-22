@@ -28,7 +28,7 @@
       >
         mdi-clock
       </v-icon>
-      <span class="caption grey--text font-weight-light">last registration 26 minutes ago</span>
+      <span class="caption grey--text font-weight-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
     </v-card-text>
   </v-card>
 </template>
