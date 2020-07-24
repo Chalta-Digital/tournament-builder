@@ -6,20 +6,20 @@
     >
         <v-toolbar-title class="headline text-uppercase">
           <span></span>
-          <span class="">
-            <router-link to="/" class="site-name">Tournament Manager</router-link>
+          <span class="site-name" @click="navigateTo({name:'home'})">
+            Tournament Manager
           </span>
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items class="hidden-sm-and-down">
-          <v-btn text>
-            <router-link class="top-menu-item" to="/">Home</router-link>
+          <v-btn text @click="navigateTo({name:'home'})">
+            Home
           </v-btn>
-          <v-btn text>
-            <router-link class="top-menu-item" to="/about">About</router-link>
+          <v-btn text @click="navigateTo({name:'about'})">
+            About
           </v-btn>
-          <v-btn text>
-            <router-link class="top-menu-item" to="/login">Login</router-link>
+          <v-btn text @click="navigateTo({name:'login'})">
+            Login
           </v-btn>
         </v-toolbar-items>
 
@@ -29,10 +29,25 @@
     </v-main>
   </v-app>
 </template>
+
+<script>
+export default {
+  methods: {
+    navigateTo(route) {
+      this.$router.push(route)
+    }
+  }
+}
+</script>
+
+<style>
+
+</style>script
 <style scoped>
-/* .site-name{
+.site-name{
   color: #80cbc4;
   text-decoration: none;
+  cursor: pointer;
 }
 .site-name:hover{
   color: aliceblue;
@@ -44,5 +59,5 @@
 }
 .top-menu-item:hover{
   color: #00bfa5;
-} */
+}
 </style>

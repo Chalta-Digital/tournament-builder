@@ -1,12 +1,10 @@
 <template>
-<div><h1>Login</h1></div>
-    <!-- <v-row no-gutters>
-      <v-col sm="3"></v-col>
-      <v-col
+  <v-container>
+    <v-row no-gutters>
+      <v-col cols="9" offset="3"
       >
         <v-card
-        class="mx-auto"
-        min-width="40%"
+        max-width="60%"
         outlined
         color="cyan lighten-5"
         :elevation="10"
@@ -24,12 +22,18 @@
 
         </v-card>
       </v-col>
-    </v-row> -->
-
+    </v-row>
+  </v-container>
 </template>
 
 <script>
+// import Login from '@/components/Login'
+
 export default {
-  name: 'Login'
+  name: 'Login',
+
+  components: {
+    // Login
+  }
 }
 </script>

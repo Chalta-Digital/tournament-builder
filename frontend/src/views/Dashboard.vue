@@ -26,9 +26,9 @@
         class="mr-2"
         small
       >
-        mdi-clock
+        mdi-alert-octagram
       </v-icon>
-      <span class="caption grey--text font-weight-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+      <span class="caption grey--text font-weight-light"></span>
     </v-card-text>
   </v-card>
 </template>
