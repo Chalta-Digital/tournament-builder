@@ -12,10 +12,11 @@
         <v-form>
           <v-card-title>Please Login with your cridentials</v-card-title>
 
-          <v-text-field label="Username" rounded></v-text-field>
-          <v-text-field type="password" label="Password" rounded></v-text-field>
+          <v-text-field prepend-icon="mdi-account" label="Username" v-model="username" rounded></v-text-field>
+          <v-text-field type="password" label="Password" v-model="password" rounded></v-text-field>
+          <p v-if="msg">{{ msg }}</p>
           <v-card-actions>
-          <v-btn text><router-link to="/dashboard">Login</router-link></v-btn>
+          <v-btn text @click="login">Login</v-btn>
           <v-btn text>Sign Up</v-btn>
           </v-card-actions>
         </v-form>
@@ -27,13 +28,35 @@
 </template>
 
 <script>
-// import Login from '@/components/Login'
+
+import AuthService from '@/services/AuthService.js'
 
 export default {
   name: 'Login',
-
-  components: {
-    // Login
+  data() {
+    return {
+      username: '',
+      password: '',
+      msg: ''
+    }
+  },
+  methods: {
+    async login() {
+      try {
+        const credentials = {
+          username: this.username,
+          password: this.password
+        }
+        const response = await AuthService.login(credentials)
+        this.msg = response.msg
+        const token = response.token
+        const user = response.user
+        this.$store.dispatch('login', { token, user })
+        this.$router.push('/')
+      } catch (error) {
+        this.msg = error.response.data.msg
+      }
+    }
   }
 }
 </script>
