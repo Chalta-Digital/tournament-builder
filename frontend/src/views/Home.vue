@@ -1,56 +1,34 @@
 <template>
-  <div>
-    <b-jumbotron header="Agile Development Processes Frontend" lead="Welcome to Your Frontend Vue.js App">
-      <p>Message from the server: {{ message }}</p>
-      <b-button variant="primary" href="/camels">List Camels</b-button>
-    </b-jumbotron>
-    <b-container>
-      <b-row>
-        <b-col><h1>Responsive BootstrapVue: <a href="https://bootstrap-vue.js.org/docs/components/layout/">Layout and Grid System</a></h1></b-col>
-      </b-row>
-      <!-- Mobile (< 768px): stack columns by making one half-width and one full-width
-           Desktop (>= 768px): keep both columns in same row in 4:8 ratio -->
-      <b-row>
-        <b-col class="example-col" cols="6" md="4">Message from the server</b-col>
-        <b-col class="example-col" cols="12" md="8">{{ message }}</b-col>
-      </b-row>
-    </b-container>
-  </div>
+  <v-container
+  >
+    <v-row>
+      <v-col>
+        <v-card  color="#385F73" height="250" elevation="5">
+
+            <v-btn @click="navigateTo({name:'login'})" block text height="100%"><span class="text-h2">Login</span></v-btn>
+        </v-card>
+      </v-col>
+      <v-col>
+        <v-card  color="#3889 73" height="250" elevation="5">
+        <v-btn block text height="100%"><span class="text-h2">Register</span></v-btn>
+        </v-card>
+      </v-col>
+    </v-row>
+
+  </v-container>
 </template>
 
 <script>
-// @ is an alias to /src
-import { Api } from '@/Api'
 
 export default {
-  name: 'home',
-  data() {
-    return {
-      message: ''
-    }
-  },
-  mounted() {
-    this.getMessage()
-  },
+  name: 'Home',
   methods: {
-    getMessage() {
-      Api.get('/')
-        .then(response => {
-          this.message = response.data.message
-        })
-        .catch(error => {
-          this.message = error
-        })
+    navigateTo(route) {
+      this.$router.push(route)
     }
+  },
+  components: {
+
   }
 }
 </script>
-
-<style>
-.example-col {
-  padding-top: .75rem;
-  padding-bottom: .75rem;
-  background-color: whitesmoke;
-  border: 2px solid lightgray;
-}
-</style>

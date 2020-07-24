@@ -5,6 +5,7 @@ import BootstrapVue from 'bootstrap-vue'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import vuetify from './plugins/vuetify'
 
 Vue.use(BootstrapVue)
 
@@ -12,5 +13,6 @@ Vue.config.productionTip = false
 
 new Vue({
   router,
+  vuetify,
   render: function (h) { return h(App) }
 }).$mount('#app')

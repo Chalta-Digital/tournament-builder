@@ -1,31 +1,63 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/camels">Camels</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <v-app-bar
+      app
+      color="cyan darken-4"
+    >
+        <v-toolbar-title class="headline text-uppercase">
+          <span></span>
+          <span class="site-name" @click="navigateTo({name:'home'})">
+            Tournament Manager
+          </span>
+        </v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-toolbar-items class="hidden-sm-and-down">
+          <v-btn text @click="navigateTo({name:'home'})">
+            Home
+          </v-btn>
+          <v-btn text @click="navigateTo({name:'about'})">
+            About
+          </v-btn>
+          <v-btn text @click="navigateTo({name:'login'})">
+            Login
+          </v-btn>
+        </v-toolbar-items>
+
+    </v-app-bar>
+    <v-main>
+      <router-view></router-view>
+    </v-main>
+  </v-app>
 </template>
 
+<script>
+export default {
+  methods: {
+    navigateTo(route) {
+      this.$router.push(route)
+    }
+  }
+}
+</script>
+
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-}
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+</style>script
+<style scoped>
+.site-name{
+  color: #80cbc4;
+  text-decoration: none;
+  cursor: pointer;
 }
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+.site-name:hover{
+  color: aliceblue;
+  text-decoration: none;
+}
+.top-menu-item{
+  color: #b2dfdb;
+  text-decoration: none;
+}
+.top-menu-item:hover{
+  color: #00bfa5;
 }
 </style>
