@@ -1,10 +1,13 @@
 var express = require('express');
 var router = express.Router();
-var camels = [];
+var camels = ['c','d'];
+
+
+
 
 // Return a list of all camels
 router.get('/', function(req, res, next) {
-    res.json({'camels': camels});
+    res.json({'camels': 'camels'});
 });
 
 // Create a new camel

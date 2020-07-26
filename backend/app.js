@@ -6,6 +6,7 @@ var cors = require('cors');
 var history = require('connect-history-api-fallback');
 
 var camelsController = require('./controller');
+var userController = require('./controller/user_controller');
 var port = process.env.PORT || 3000;
 
 // Create Express app
@@ -26,6 +27,7 @@ app.get('/api', function(req, res) {
     res.json({'message': 'Welcome to the tournament manager backend ExpressJS project!'});
 });
 app.use('/api/camels', camelsController);
+app.use('/api/user', userController);
 
 // Catch all non-error handler for api (i.e., 404 Not Found)
 app.use('/api/*', function (req, res) {

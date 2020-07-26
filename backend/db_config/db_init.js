@@ -54,7 +54,7 @@ const createTournamentTable = () => {
 	);
 	`;
     pgPool.query(createTournamentTableText, (err, res) => {
-		if (err) console.log(err);
+        if (err) console.log(err);
         console.log(res);
         console.log('Tournament Table createdddddddddddddd');
     });
@@ -70,7 +70,7 @@ const createTeamsTable = () => {
 	);
 	`;
     pgPool.query(createTeamsText, (err, res) => {
-		if (err) console.log(err);
+        if (err) console.log(err);
         console.log(res);
         console.log('Teams Table created');
     });
@@ -78,7 +78,7 @@ const createTeamsTable = () => {
 
 
 const createGroupsTable = () => {
-	const createGroupsText = 
+    const createGroupsText = 
 	`CREATE TABLE IF NOT EXISTS groups (
 		id SERIAL PRIMARY KEY,
 		group_name TEXT NOT NULL,
@@ -87,7 +87,7 @@ const createGroupsTable = () => {
 	);
 	`;
     pgPool.query(createGroupsText, (err, res) => {
-		if (err) console.log(err);
+        if (err) console.log(err);
         console.log(res);
         console.log('Groups Table created');
     });
@@ -103,7 +103,7 @@ const createTeamTournamentTable = () => {
 	);
 	`;
     pgPool.query(createTeamTournamentText, (err, res) => {
-		if (err) console.log(err);
+        if (err) console.log(err);
         console.log(res);
         console.log('Teams Tournament Joint Table created');
     });
@@ -121,7 +121,7 @@ const createGamesTable = () => {
 	);
 	`;
     pgPool.query(createGamesText, (err, res) => {
-		if (err) console.log(err);
+        if (err) console.log(err);
         console.log(res);
         console.log('Games Table created');
     });
@@ -138,7 +138,7 @@ const createResultsTable = () => {
 	);
 	`;
     pgPool.query(createResultsText, (err, res) => {
-		if (err) console.log(err);
+        if (err) console.log(err);
         console.log(res);
         console.log('Results Table created');
     });
@@ -165,7 +165,7 @@ const generateUsersTableData = () => {
 	`;
 
     pgPool.query(generateUsersTableDataText, (err, res) => {
-		if (err) console.log(err);
+        if (err) console.log(err);
         console.log(res);
         console.log('data inserted in users table');
     });
@@ -174,14 +174,14 @@ const generateUsersTableData = () => {
 const createAllTables = () => {
     createRoleEnum();
     createUserTable();
-	createTournamentTable();
-	createTeamsTable();
-	createGroupsTable();
-	createTeamTournamentTable();
-	createGamesTable();
-	createResultsTable();
-	generateUsersTableData();
-	//pgPool.end();
+    createTournamentTable();
+    createTeamsTable();
+    createGroupsTable();
+    createTeamTournamentTable();
+    createGamesTable();
+    createResultsTable();
+    generateUsersTableData();
+    //pgPool.end();
 };
 
 module.exports = {

@@ -51,6 +51,7 @@ export default {
         this.msg = response.msg
         const token = response.token
         const user = response.user
+        console.log(credentials)
         this.$store.dispatch('login', { token, user })
         this.$router.push('/')
       } catch (error) {
