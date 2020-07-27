@@ -10,7 +10,7 @@ var pgPoolClient = require('../db_config/db_con').pgPoolClient;
 
 router.post('/login', (req, res, next) => {
     const qText = `SELECT * FROM users WHERE username = ${db.escape(req.body.username)};`
-    pgPoolClient.query(qText, (err, res) => {
+    pgPoolClient.query(qText, (err, result) => {
         if (err) {
             throw err;
             return res.status(400).send({
@@ -18,9 +18,9 @@ router.post('/login', (req, res, next) => {
             });
           }
         if (!result.length) {
-        return res.status(401).send({
-            msg: 'Username or password is incorrect!'
-        });
+            return res.status(401).send({
+                msg: 'Username or password is incorrect!'
+            });
         }
     });
 });

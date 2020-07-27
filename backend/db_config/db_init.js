@@ -12,11 +12,17 @@ const pgPool = new Pool ({
 
 
 const createRoleEnum = () => {
-    const createRoleEnumText = `
-	DROP TYPE IF EXISTS role CASCADE;
-	CREATE TYPE role AS ENUM ('appAdmin', 'tournamentAdmin', 'referee');
-	`;
+    // const createRoleEnumText = `
+	// CREATE TYPE IF NOT EXISTS role AS ENUM ('appAdmin', 'tournamentAdmin', 'referee');
+    // `;
 
+    const createRoleEnumText = `
+    DO $$ BEGIN
+        CREATE TYPE role AS ENUM ('appAdmin', 'tournamentAdmin', 'referee');
+    EXCEPTION
+        WHEN duplicate_object THEN null;
+    END $$;
+    `;
     pgPool.query(createRoleEnumText, (err, res) => {
         if (err) console.log(err);
     });
@@ -148,28 +154,28 @@ const createResultsTable = () => {
 //  dummy data generation for users table 
 // */
 
-const generateUsersTableData = () => {
-    const generateUsersTableDataText = `
-	INSERT INTO users(username, password, user_role)
-	SELECT
-	'user_' || seq AS username,
-	'chalta2020' AS password,
-	(
-		CASE (RANDOM()*2)::INT
-		WHEN 0 THEN 'appAdmin'::role
-		WHEN 1 THEN 'tournamentAdmin'::role
-		WHEN 2 THEN 'referee'::role
-		END
-	) AS user_role
-	FROM GENERATE_SERIES(1, 5) seq;
-	`;
+// const generateUsersTableData = () => {
+//     const generateUsersTableDataText = `
+// 	INSERT INTO users(username, password, user_role)
+// 	SELECT
+// 	'user_' || seq AS username,
+// 	'chalta2020' AS password,
+// 	(
+// 		CASE (RANDOM()*2)::INT
+// 		WHEN 0 THEN 'appAdmin'::role
+// 		WHEN 1 THEN 'tournamentAdmin'::role
+// 		WHEN 2 THEN 'referee'::role
+// 		END
+// 	) AS user_role
+// 	FROM GENERATE_SERIES(1, 5) seq;
+// 	`;
 
-    pgPool.query(generateUsersTableDataText, (err, res) => {
-        if (err) console.log(err);
-        console.log(res);
-        console.log('data inserted in users table');
-    });
-};
+//     pgPool.query(generateUsersTableDataText, (err, res) => {
+//         if (err) console.log(err);
+//         console.log(res);
+//         console.log('data inserted in users table');
+//     });
+// };
 
 const createAllTables = () => {
     createRoleEnum();
@@ -180,7 +186,7 @@ const createAllTables = () => {
     createTeamTournamentTable();
     createGamesTable();
     createResultsTable();
-    generateUsersTableData();
+    // generateUsersTableData();
     //pgPool.end();
 };
 
