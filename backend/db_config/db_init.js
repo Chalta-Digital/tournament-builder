@@ -39,7 +39,7 @@ const createUserTable = () => {
 		`;
     pgPool.query(createUserTableText, (err, res) => {
         if (err) console.log(err);
-     	console.log(res);
+     	// console.log(res);
         console.log('User Table created');
     });
 };
@@ -61,7 +61,7 @@ const createTournamentTable = () => {
 	`;
     pgPool.query(createTournamentTableText, (err, res) => {
         if (err) console.log(err);
-        console.log(res);
+        // console.log(res);
         console.log('Tournament Table createdddddddddddddd');
     });
 };
@@ -77,7 +77,7 @@ const createTeamsTable = () => {
 	`;
     pgPool.query(createTeamsText, (err, res) => {
         if (err) console.log(err);
-        console.log(res);
+        // console.log(res);
         console.log('Teams Table created');
     });
 };
@@ -94,7 +94,7 @@ const createGroupsTable = () => {
 	`;
     pgPool.query(createGroupsText, (err, res) => {
         if (err) console.log(err);
-        console.log(res);
+        // console.log(res);
         console.log('Groups Table created');
     });
 };
@@ -110,7 +110,7 @@ const createTeamTournamentTable = () => {
 	`;
     pgPool.query(createTeamTournamentText, (err, res) => {
         if (err) console.log(err);
-        console.log(res);
+        // console.log(res);
         console.log('Teams Tournament Joint Table created');
     });
 };
@@ -128,7 +128,7 @@ const createGamesTable = () => {
 	`;
     pgPool.query(createGamesText, (err, res) => {
         if (err) console.log(err);
-        console.log(res);
+        // console.log(res);
         console.log('Games Table created');
     });
 };
@@ -145,7 +145,7 @@ const createResultsTable = () => {
 	`;
     pgPool.query(createResultsText, (err, res) => {
         if (err) console.log(err);
-        console.log(res);
+        // console.log(res);
         console.log('Results Table created');
     });
 };
