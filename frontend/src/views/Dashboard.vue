@@ -20,22 +20,42 @@
 
     <v-card-text class="pt-0">
       <div class="title font-weight-light mb-2">User Dashboard</div>
-      <div class="subheading font-weight-light grey--text">Last Campaign Performance</div>
+      <div class="subheading font-weight-light grey--text">
+        <h1>Hej! {{ username }}</h1>
+        <p>you are logged in as {{ userRole }}</p>
+      </div>
       <v-divider class="my-2"></v-divider>
-      <v-icon
-        class="mr-2"
-        small
-      >
-        mdi-alert-octagram
-      </v-icon>
-      <span class="caption grey--text font-weight-light"></span>
+      <v-btn text @click="logout">Logout</v-btn>
+
     </v-card-text>
   </v-card>
 </template>
 
 <script>
-
+import AuthService from '@/services/AuthService.js'
 export default {
-  name: 'Dashboard'
+  name: 'Dashboard',
+  data() {
+    return {
+      secretMessage: '',
+      username: '',
+      userRole: ''
+    }
+  },
+  async created() {
+    if (!this.$store.getters.isLoggedIn) {
+      this.$router.push('/login')
+    }
+    this.btnStatus = true
+    this.username = this.$store.getters.getUser.username
+    this.userRole = this.$store.getters.getUser.user_role
+    this.secretMessage = await AuthService.getSecretContent()
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('logout')
+      this.$router.push('/login')
+    }
+  }
 }
 </script>

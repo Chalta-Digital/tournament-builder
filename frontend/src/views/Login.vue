@@ -12,8 +12,8 @@
         <v-form>
           <v-card-title>Please Login with your cridentials</v-card-title>
 
-          <v-text-field prepend-icon="mdi-account" label="Username" v-model="username" rounded></v-text-field>
-          <v-text-field type="password" label="Password" v-model="password" rounded></v-text-field>
+          <v-text-field prepend-icon="mdi-account" v-model="username" rounded></v-text-field>
+          <v-text-field type="password" v-model="password" rounded></v-text-field>
           <p v-if="msg">{{ msg }}</p>
           <v-card-actions>
           <v-btn text @click="login">Login</v-btn>
@@ -51,9 +51,9 @@ export default {
         this.msg = response.msg
         const token = response.token
         const user = response.user
-        console.log(credentials)
+        // console.log(credentials)
         this.$store.dispatch('login', { token, user })
-        this.$router.push('/')
+        this.$router.push('dashboard')
       } catch (error) {
         this.msg = error.response.data.msg
       }

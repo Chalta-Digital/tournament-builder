@@ -44,16 +44,10 @@ router.post('/login', (req, res, next) => {
         }
     });
 });
-router.get('/secret-route', userMiddleware.isLoggedIn, (req, res, next) => {
+router.get('/dashboard', userMiddleware.isLoggedIn, (req, res, next) => {
     console.log(req.userData);
     res.send('This is the secret content. Only logged in users can see that!');
 });
 
-// router.post('/login', (req, res, next) => {
-//     return res.status(200).send({
-//         msg: 'Logged in!',
-//         user: 'user'
-//     });
-// });
 
 module.exports = router;

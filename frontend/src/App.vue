@@ -18,9 +18,6 @@
           <v-btn text @click="navigateTo({name:'about'})">
             About
           </v-btn>
-          <v-btn text @click="navigateTo({name:'login'})">
-            Login
-          </v-btn>
         </v-toolbar-items>
 
     </v-app-bar>

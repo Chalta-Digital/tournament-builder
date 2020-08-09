@@ -24,6 +24,7 @@ module.exports = {
         next();
     },
     isLoggedIn: (req, res, next) => {
+        console.log(req.headers.authorization.split(' ')[1])
         try {
             const token = req.headers.authorization.split(' ')[1];
             const decoded = jwt.verify(
@@ -33,6 +34,7 @@ module.exports = {
             req.userData = decoded;
             next();
         } catch (err) {
+            console.log('Your session is not valid!')
             return res.status(401).send({
                 msg: 'Your session is not valid!'
             });

@@ -19,9 +19,16 @@
 </template>
 
 <script>
-
+import AuthService from '@/services/AuthService.js'
 export default {
   name: 'Home',
+  async created() {
+    if (this.$store.getters.isLoggedIn) {
+      this.$router.push('/dashboard')
+    }
+    this.username = this.$store.getters.getUser.username
+    this.secretMessage = await AuthService.getSecretContent()
+  },
   methods: {
     navigateTo(route) {
       this.$router.push(route)
